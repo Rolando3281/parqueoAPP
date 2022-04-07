@@ -1,12 +1,10 @@
 <template>
-
-
-    <div class="container">
-        <br>
+   <div class="container">
+         <br>
         <div class="card">
             <div class="card-header">
                 
-                <center><b>ESTANCIAS EN PARQUEO</b> </center>
+                <center><b>PAGOS DE RESIDENTES EN PARQUEO</b> </center>
                 
             </div>
 
@@ -15,32 +13,22 @@
             <div class="card-body">
                 <h4 class="card-title"></h4>
                
-                    <table class="table table-hover">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th>PLACA</th>
-                                <th>ENTRADA</th>
-                                <th>SALIDA</th>
-                                <th>IMPORTE</th>
-                                <th>ACCIONES</th>
+                                <th>TIEMPO ESTACIONADO (MINUTOS)</th>
+                                <th>CANTIDAD A PAGAR</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="estancia in estancias" :key="estancia.idEstancia">
-                                <td >{{estancia.placa}}</td>
-                                <td>{{estancia.entrada}}</td>
-                                <td>{{estancia.salida}}</td>
-                                <td >{{estancia.importe}}</td>
-                                <td v-if="!estancia.salida">
-
-                                    <div class="btn-group" role="group" aria-label="">
-                                        <button type="button" v-on:click="darSalida(estancia.idEstancia)" class="btn btn-primary">DAR SALIDA</button>
-                                        
-                                    </div>
-
-
-                                    
-                                </td>
+                            <tr v-for="pago in pagos" :key="pago.idVehiculo">
+                                <td >{{pago.placa}}</td>
+                                <td>{{pago.tiempoAcumulado}}</td>
+                                <td>{{pago.montoTotal}}</td>
+                               
+                                
                             </tr>
                             
                         </tbody>
@@ -63,7 +51,7 @@ export default {
 
     data(){
         return{
-            estancias:[]
+            pagos:[]
             }
         
 
@@ -73,20 +61,20 @@ export default {
 
     created:function(){
 
-        this.consultarEstancias();
+        this.consultarPagos();
 
     },
 
     methods:{
-        consultarEstancias(){
-            fetch('http://localhost:8000/api/estancias')
+        consultarPagos(){
+            fetch('http://localhost:8000/api/pagos')
             .then(respuesta=>respuesta.json())
             .then((datosRespuesta)=>{
                 console.log(datosRespuesta)
                 this.estancias = []
                 if(typeof datosRespuesta[0].success==='undefined')
                 {
-                    this.estancias=datosRespuesta;
+                    this.pagos=datosRespuesta;
                 }
             })
             .catch(console.log)

@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ListarEstancias from '../components/ListarEstancias.vue'
 import DarIngreso from "../components/DarIngreso.vue"
+import pagosResidentes from "../components/pagosResidentes.vue"
 
 const routes = [
   {
@@ -22,6 +23,11 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     //component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
     component: DarIngreso
+  },
+  {
+    path: '/pagos',
+    name: 'Pagos',
+    component: pagosResidentes
   }
 ]
 

@@ -1,22 +1,27 @@
 <template>
     <div class="container">
+         <br>
             <div class="card">
                 <div class="card-header">
-                    <center>INGRESO DE VEHICULO</center>
+                    <center><b>INGRESO DE VEHICULO</b></center>
                 </div>
+
+                 <img alt="Vue logo" src="../assets/logo-bm.png">
                 <div class="card-body">
 
                     <form v-on:submit.prevent="ingresarVehiculo">
                         <div class="form-group">
                           <label for="placa">PLACA:</label>
                           <input type="text"
-                            class="form-control" name="placa" id="placa" v-model="estancia.placa" aria-describedby="helpId" placeholder="NUMERO DE PLACA">
+                            class="form-control" required name="placa" id="placa" v-model="estancia.placa" aria-describedby="helpId" placeholder="NUMERO DE PLACA">
                           <small id="helpId" class="form-text text-muted">Ingrese numero de placa</small>
                         </div>
 
                         <div class="btn-group" role="group" aria-label="">
                             <button type="submit" class="btn btn-success">INGRESAR</button>
-                            <button type="button" class="btn btn-danger">CANCELAR</button>
+                            
+
+                            <router-link :to="{name:'Listar'}" class="btn btn-danger">CANCELAR</router-link>
                             
                         </div>
 
